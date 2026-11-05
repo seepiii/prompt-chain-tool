@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+/* Dark mode follows the `dark` class that the theme script in layout.tsx puts on <html>. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Colours are tokens, so every component switches theme without per-element dark: classes. */
+:root {
+  --bg: #f6f4ee;
+  --panel: #ffffff;
+  --panel-2: #efece3;
+  --line: #ddd8cb;
+  --fg: #1d1b16;
+  --muted: #6b6558;
+  --accent: #8a5a00;
+  --accent-bg: #f4dfa6;
+  --accent-fg: #1a1408;
+  --danger: #b42318;
+  --ok: #1f7a4a;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #08080a;
+  --panel: #121216;
+  --panel-2: #1a1a20;
+  --line: #2a2a31;
+  --fg: #ededed;
+  --muted: #9a978f;
+  --accent: #f4dfa6;
+  --accent-bg: #f4dfa6;
+  --accent-fg: #1a1408;
+  --danger: #f97066;
+  --ok: #7ee2a8;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: var(--font-lato);
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-bg: var(--accent-bg);
+  --color-accent-fg: var(--accent-fg);
+  --color-danger: var(--danger);
+  --color-ok: var(--ok);
+}
+
+/* Same size bump the TA asked for in the other two apps. */
+html {
+  font-size: 112.5%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+@layer components {
+  .panel {
+    border: 1px solid var(--line);
+    background: var(--panel);
+    border-radius: 0.75rem;
+  }
+
+  .field {
+    width: 100%;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    color: var(--fg);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .field:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    border-radius: 0.5rem;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    border: 1px solid var(--line);
+    background: var(--panel-2);
+    color: var(--fg);
+  }
+
+  .btn:hover:not(:disabled) {
+    border-color: var(--accent);
+  }
+
+  .btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .btn-primary {
+    background: var(--accent-bg);
+    color: var(--accent-fg);
+    border-color: transparent;
+  }
+
+  .btn-danger {
+    color: var(--danger);
+  }
+}
